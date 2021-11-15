@@ -2,15 +2,20 @@ import '../styles.css';
 import Square from './Square'
 import {useState, useEffect} from 'react'
 import {patterns} from '../patterns'
+import DisplayWinners from './DisplayWinners';
+
 
 const Board = ({position, setValue}) => {
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
+    const [playerOnePoints, setPlayerOnePoints] = useState(0)
+    const [playerTwoPoints, setPlayerTwoPoints] = useState(0)
+
 
     useEffect(() => {
-        checkWin()
         checkTie()
-        if(player == 'O') setPlayer('X')
+        checkWin()
+        if(player === 'O') setPlayer('X')
         else setPlayer('O')
     }, [position])
 
@@ -21,7 +26,7 @@ const Board = ({position, setValue}) => {
     
     const chooseSquare = (square) => {
         setValue(position.map((val, idx) => {
-            if(idx == square && val == "") return player
+            if(idx === square && val === "") return player
             return val
         }))
     }
@@ -32,12 +37,15 @@ const Board = ({position, setValue}) => {
             if(firstPlayer === '') return
             let foundWinningPattern = true
             currentPattern.forEach((idx) => {
-                if(position[idx] != firstPlayer) foundWinningPattern = false     
+                if(position[idx] !== firstPlayer) foundWinningPattern = false     
             })
 
             if(foundWinningPattern) {
-                // add sending winner to DB
-
+                if(player === 'X') {
+                    setPlayerOnePoints(playerOnePoints + 1)
+                } else if(player === "O") {
+                    setPlayerTwoPoints(playerTwoPoints + 1)
+                }
                 setResult({winner: player, gameOver: 'Won'})
                 restartGame()
             }
@@ -47,7 +55,7 @@ const Board = ({position, setValue}) => {
     const checkTie = () => {
         let filled = true;
         position.forEach((square) => {
-            if(square == "") {
+            if(square === "") {
                 filled = false
             }
         })
@@ -75,6 +83,8 @@ const Board = ({position, setValue}) => {
                 <Square val={position[7]} chooseSquare={() => chooseSquare(7)}/>
                 <Square val={position[8]} chooseSquare={() => chooseSquare(8)}/>
             </div>
+            <DisplayWinners playerOnePoints={playerOnePoints} playerTwoPoints={playerTwoPoints}/>
+
         </>
     )
 }
