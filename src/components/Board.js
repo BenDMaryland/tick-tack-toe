@@ -1,19 +1,55 @@
 import '../styles.css';
 import Square from './Square'
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
+import {patterns} from '../patterns'
 
 const Board = ({position, setValue}) => {
-    const  [player, setPlayer] = useState("X");
+    const [player, setPlayer] = useState("O");
+    const [result, setResult] = useState({winner:"" ,gameOver: "none"})
 
+    useEffect(() => {
+        checkWin()
+        checkTie()
+        if(player == 'O') setPlayer('X')
+        else setPlayer('O')
+    }, [position])
+
+    useEffect(() => {
+        if(result.gameOver != 'none')
+        alert(`Game finished, winner: ${result.winner}`)
+    }, [result])
+    
     const chooseSquare = (square) => {
         setValue(position.map((val, idx) => {
             if(idx == square && val == "") return player
             return val
-            
         }))
-        {player == "X" ? setPlayer("O"): setPlayer("X")}
     }
 
+    const checkWin = () => {
+        patterns.forEach((currentPattern) => {
+            const firstPlayer = position[currentPattern[0]];
+            if(firstPlayer === '') return
+            let foundWinningPattern = true
+            currentPattern.forEach((idx) => {
+                if(position[idx] != firstPlayer) foundWinningPattern = false     
+            })
+
+            if(foundWinningPattern) {
+                setResult({winner: player, gameOver: 'Won'})
+            }
+        })
+    }
+
+    const checkTie = () => {
+        let filled = true;
+        position.forEach((square) => {
+            if(square == "") {
+                filled = false
+            }
+        })
+        if(filled) setResult({winner: "No one", state: "Tie"})
+    }
     return (
         <>
             <div className="row">

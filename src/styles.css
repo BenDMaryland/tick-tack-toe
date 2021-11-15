@@ -37,3 +37,7 @@ body {
     font-size: 30px;
     color: black;
 }
+.square:active {
+    background-color: rgb(88, 136, 224);
+    ;
+}
