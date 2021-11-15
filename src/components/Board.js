@@ -36,7 +36,10 @@ const Board = ({position, setValue}) => {
             })
 
             if(foundWinningPattern) {
+                // add sending winner to DB
+
                 setResult({winner: player, gameOver: 'Won'})
+                restartGame()
             }
         })
     }
@@ -49,6 +52,11 @@ const Board = ({position, setValue}) => {
             }
         })
         if(filled) setResult({winner: "No one", state: "Tie"})
+    }
+
+    const restartGame = () => {
+        setValue(["","","","","","","","",""])
+        setPlayer("X")
     }
     return (
         <>
