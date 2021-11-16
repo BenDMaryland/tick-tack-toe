@@ -10,9 +10,9 @@ function App() {
   return (
     <div className='app'>
       <div className="board">
-        <NavLink className='links' to='/new'>Create Players</NavLink>
-        <NavLink className='links' to='/'>Board Screen</NavLink>
-      <Routes>
+        <NavLink className='links' to='/players'>Create Players</NavLink>
+        <NavLink className='links' to='/'>Game board</NavLink>
+        <Routes>
             <Route path="new" element={<Form /> } /> 
             <Route path="/" element={<Board position={board} setValue={setBoard}/>}/>  
         </Routes>
