@@ -19,7 +19,8 @@ const Form = () => {
             playerName: playerData.playerName,
             playerAvatar: playerData.playerAvatar,
         }
-
+       console.log("playerdata",playerData)
+       console.log("new", newPlayer)
         fetch('http://localhost:9292/players', {
             method: "POST",
             headers: {
@@ -33,8 +34,9 @@ const Form = () => {
     }
 
     const handleChange = (e) => {
+        console.log(playerData)
             setPlayerData({
-                [e.target.name] : e.target.value,
+                ...playerData,[e.target.name] : e.target.value
             })
     }
     
@@ -42,8 +44,8 @@ const Form = () => {
         <div className="form">
             <form className = 'form' onSubmit={handleSubmit}>
             <h2>Player 1</h2> 
-                <input name='name' placeholder='Full Name' value={playerData.playerName} onChange={handleChange}/>
-                <input  name='avatar' placeholder='avatar' value={playerData.playerAvatar} onChange={handleChange}/>
+                <input name='playerName' placeholder='Full Name' value={playerData.playerName} onChange={handleChange}/>
+                <input  name='playerAvatar' placeholder='avatar' value={playerData.playerAvatar} onChange={handleChange}/>
                 <input type='submit' className='submit' />
             </form>
 
