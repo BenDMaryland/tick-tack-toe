@@ -3,13 +3,22 @@ import Square from './Square'
 import {useState, useEffect} from 'react'
 import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
+import Form from './Form';
+// import WinScreen from './WinScreen'
 
 
 const Board = ({position, setValue}) => {
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
-    const [playerOnePoints, setPlayerOnePoints] = useState(0)
-    const [playerTwoPoints, setPlayerTwoPoints] = useState(0)
+    const [playerOneWins, setPlayerOneWins] = useState(0)
+    const [playerTwoWins, setPlayerTwoWins] = useState(0)
+    // const [playerData, setPlayerData] = useState({
+    //     id: '',
+    //     playerWins: 0,
+    //     playerLosses: 0,
+    //     playerName: '',
+    //     playerAvatar: '',
+    // })
 
 
     useEffect(() => {
@@ -17,11 +26,14 @@ const Board = ({position, setValue}) => {
         checkWin()
         if(player === 'O') setPlayer('X')
         else setPlayer('O')
-    }, [position])
+    }, [position]);
 
     useEffect(() => {
-        if(result.gameOver != 'none')
-        alert(`Game finished, winner: ${result.winner}`)
+        if(result.gameOver != 'none') {
+            alert("You've won!")
+            // <WinScreen />
+            // console.log('hi')
+        } 
     }, [result])
     
     const chooseSquare = (square) => {
@@ -29,6 +41,20 @@ const Board = ({position, setValue}) => {
             if(idx === square && val === "") return player
             return val
         }))
+    }
+
+    const handleAddWins = () => {
+        fetch(`http://localhost:9292/player`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                
+            })
+        })
+        .then(r => r.json)
+        .then(updatedPoints => setPlayerOneWins(updatedPoints))
     }
 
     const checkWin = () => {
@@ -42,9 +68,9 @@ const Board = ({position, setValue}) => {
 
             if(foundWinningPattern) {
                 if(player === 'X') {
-                    setPlayerOnePoints(playerOnePoints + 1)
+                    handleAddWins()
                 } else if(player === "O") {
-                    setPlayerTwoPoints(playerTwoPoints + 1)
+                    
                 }
                 setResult({winner: player, gameOver: 'Won'})
                 restartGame()
@@ -57,9 +83,13 @@ const Board = ({position, setValue}) => {
         position.forEach((square) => {
             if(square === "") {
                 filled = false
+                
             }
         })
-        if(filled) setResult({winner: "No one", state: "Tie"})
+        if(filled) {
+            setResult({winner: "No one", state: "Tie"})
+            restartGame()
+        }
     }
 
     const restartGame = () => {
@@ -68,6 +98,7 @@ const Board = ({position, setValue}) => {
     }
     return (
         <>
+            <DisplayWinners playerOnePoints={playerOneWins} playerTwoPoints={playerTwoWins}/>
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>
                 <Square val={position[1]} chooseSquare={() => chooseSquare(1)}/>
@@ -83,8 +114,6 @@ const Board = ({position, setValue}) => {
                 <Square val={position[7]} chooseSquare={() => chooseSquare(7)}/>
                 <Square val={position[8]} chooseSquare={() => chooseSquare(8)}/>
             </div>
-            <DisplayWinners playerOnePoints={playerOnePoints} playerTwoPoints={playerTwoPoints}/>
-
         </>
     )
 }
