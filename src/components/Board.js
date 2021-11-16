@@ -62,6 +62,30 @@ const Board = ({position, setValue}) => {
         if(filled) setResult({winner: "No one", state: "Tie"})
     }
 
+//  function postHanlder ()[
+//     fetch("http://localhost:9292/",
+//     {
+//         headers: {
+//           'Accept': 'application/json',
+//           'Content-Type': 'application/json'
+//         },
+//         method: "POST",
+//         body: JSON.stringify({
+//             x: id of player x, 
+//             o: id of player o,
+//             winner: if of who won,
+//             loser: id of who lost,
+        
+//         })
+//     })
+//     .then(function(res){ console.log(res) })
+//     .catch(function(res){ console.log(res) })
+
+//  ]
+
+
+
+
     const restartGame = () => {
         setValue(["","","","","","","","",""])
         setPlayer("X")
