@@ -44,17 +44,27 @@ const Board = ({position, setValue}) => {
     }
 
     const handleAddWins = () => {
-        fetch(`http://localhost:9292/player`, {
-            method: "PATCH",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
+ console.log(player)
+
+
+
+        // fetch(`http://localhost:9292/player`, {
+        //     method: "PATCH",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //     },
+        //     body: JSON.stringify({
                 
-            })
-        })
-        .then(r => r.json)
-        .then(updatedPoints => setPlayerOneWins(updatedPoints))
+        //     })
+        // })
+        // .then(r => r.json)
+        // .then(updatedPoints => setPlayerOneWins(updatedPoints))
+
+
+
+
+
+
     }
 
     const checkWin = () => {
