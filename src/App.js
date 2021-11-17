@@ -42,12 +42,17 @@ function playerTwoSelectionHandler(player){
   setselectedPlayer2({...player, ["o"]: "o"})
 }
 
+function placeholdernameWinner(winner){
+
+console.log(winner)
+{winner==="x" ? console.log(selectedPlayer1) : console.log(selectedPlayer2) }
+
+}
 
 
 
-
-console.log("player one is :",selectedPlayer1)
-console.log("player two is :",selectedPlayer2)
+// console.log("player one is :",selectedPlayer1)
+// console.log("player two is :",selectedPlayer2)
 
 
 
@@ -67,7 +72,7 @@ if (!allPlayers) return <h1>Loading</h1>
         <Routes>
             <Route path="new" element={<Form /> } /> 
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
-            <Route path="/" element={<Board position={board} setValue={setBoard}/>}/>  
+            <Route path="/" element={<Board placeholdernameWinner={placeholdernameWinner} position={board} setValue={setBoard}/>}/>  
           
         </Routes>
       </div>

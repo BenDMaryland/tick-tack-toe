@@ -7,7 +7,7 @@ import Form from './Form';
 // import WinScreen from './WinScreen'
 
 
-const Board = ({position, setValue}) => {
+const Board = ({position, setValue,placeholdernameWinner}) => {
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
     const [playerOneWins, setPlayerOneWins] = useState(0)
@@ -44,7 +44,6 @@ const Board = ({position, setValue}) => {
     }
 
     const handleAddWins = () => {
- console.log(player)
 
 
 
@@ -79,7 +78,9 @@ const Board = ({position, setValue}) => {
             if(foundWinningPattern) {
                 if(player === 'X') {
                     handleAddWins()
+                    placeholdernameWinner("x")
                 } else if(player === "O") {
+                    placeholdernameWinner("o")
                     
                 }
                 setResult({winner: player, gameOver: 'Won'})
