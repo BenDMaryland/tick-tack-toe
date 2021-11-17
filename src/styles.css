@@ -102,3 +102,13 @@ body {
      text-align: center;
      
   }
+
+  #playerinfo {
+    display: inline-flex;
+}
+
+.playerlist {
+display: none;
+color: #218824;
+
+}

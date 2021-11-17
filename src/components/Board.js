@@ -116,6 +116,9 @@ const Board = ({position, setValue}) => {
 
 
 
+
+
+
     const restartGame = () => {
         setValue(["","","","","","","","",""])
         setPlayer("X")
