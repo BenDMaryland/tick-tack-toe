@@ -54,21 +54,27 @@ console.log(selectedPlayer1.id)
         })
         .then(r => r.json)
 
+
+
+
+
     }
     const handleAddWinsTwo = () => {
-        console.log(selectedPlayer2.id)
-        fetch(`http://localhost:9292/players/${selectedPlayer2.id}`, {
+
+
+
+    
+        fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                playerWins: playerTwoData.playerWins,
-                playerLosses: playerTwoData.playerLosses
+                winner: selectedPlayer2.id,
+                loser:selectedPlayer1.id
             })
         })
         .then(r => r.json)
-        .then(updatedPoints => setPlayerTwoData(updatedPoints))
       
     }
 

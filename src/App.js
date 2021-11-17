@@ -13,6 +13,8 @@ function App() {
   const [selected2, setselected2] = useState(false)
   const [allPlayers, setallPlayers] = useState([])
   const [currentGameInstance, setcurrentGameInstance] = useState()
+const [domUpdate, setdomUpdate] = useState(0)
+
 const [selectedPlayer1, setselectedPlayer1] = useState({
 player_name: "",
 player_avatar:""
@@ -28,8 +30,13 @@ const [selectedPlayer2, setselectedPlayer2] = useState({
   
   })
 
+function domupdateHandler(){
 
+  setdomUpdate((domUpdate)=>domUpdate+1)
+console.log("it ran ")
 
+}
+console.log(domUpdate)
 
 
 
@@ -44,7 +51,7 @@ const [selectedPlayer2, setselectedPlayer2] = useState({
    .then(r=>r.json())
    .then (data=> setallPlayers(data))
    
-   }, [allPlayers.length])
+   }, [selected1])
    
 
 function playerOneSelectionHandler(player){
@@ -107,7 +114,7 @@ if (selected1 ===true &&selected2===true ){
 }
 
 
-}, [selected1,selected2])
+}, [selected1,domUpdate])
 
 // console.log("player one is :",selectedPlayer1)
 // console.log("player two is :",selectedPlayer2)
@@ -144,7 +151,7 @@ if (!allPlayers) return <h1>Loading</h1>
         <Routes>
 
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
-            <Route path="new" element={<Form playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
+            <Route path="new" element={<Form domupdateHandler={domupdateHandler} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
             <Route path="/" element={<Board resetPlayers={resetPlayers} position={board} setValue={setBoard} currentGameInstance={currentGameInstance}  selectedPlayer2={selectedPlayer2} playerOneData={playerOneData}  selectedPlayer1={selectedPlayer1}   setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
 
         </Routes>

@@ -1,7 +1,7 @@
 import '../styles.css';
 import {useState} from 'react'
 
-const Form = ({playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
+const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
 
      
 
@@ -25,6 +25,7 @@ const Form = ({playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}
         })
         .then(response => response.json())
         .then(newPlayer)
+        .then(domupdateHandler())
     }
 
     const handleSubmitTwo = (event) => {
@@ -47,6 +48,7 @@ const Form = ({playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}
         })
         .then(response => response.json())
         .then(newPlayer)
+        .then(domupdateHandler())
     }
 
     const handleChange = (e) => {
