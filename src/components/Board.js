@@ -6,6 +6,7 @@ import DisplayWinners from './DisplayWinners';
 
 
 const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
+
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
     // const [playerOneWins, setPlayerOneWins] = useState(0)
@@ -34,6 +35,7 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
     }
 
     const handleAddWins = () => {
+
         console.log(playerOneData.id)
         fetch(`http://localhost:9292/players/${playerOneData.id}`, {
             method: "PATCH",
@@ -61,6 +63,7 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
         })
         .then(r => r.json)
         .then(updatedPoints => setPlayerTwoData(updatedPoints))
+
     }
 
     const checkWin = () => {
@@ -75,8 +78,11 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
             if(foundWinningPattern) {
                 if(player === 'X') {
                     handleAddWins()
+                    placeholdernameWinner("x")
                 } else if(player === "O") {
+
                     handleAddWinsTwo()
+
                 }
                 setResult({winner: player, gameOver: 'Won'})
                 restartGame();
@@ -115,6 +121,9 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
 //     .then(function(res){ console.log(res) })
 //     .catch(function(res){ console.log(res) })
 //  ]
+
+
+
 
 
 
