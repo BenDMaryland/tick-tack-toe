@@ -87,6 +87,17 @@ body {
         -webkit-border-radius: 10px;
         text-align: center;
   }
+
+  .formTwo {
+    width:55%;
+    height: 50%;
+    display:flexbox;
+    margin: 25px auto 0;
+    padding: 1em;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-align: center;
+  }
   .submit:hover{
     background-color: #218824; 
     color: white;

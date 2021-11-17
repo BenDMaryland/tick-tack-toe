@@ -3,23 +3,14 @@ import Square from './Square'
 import {useState, useEffect} from 'react'
 import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
-import Form from './Form';
-// import WinScreen from './WinScreen'
 
 
-const Board = ({position, setValue,placeholdernameWinner}) => {
+const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
+
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
-    const [playerOneWins, setPlayerOneWins] = useState(0)
-    const [playerTwoWins, setPlayerTwoWins] = useState(0)
-    // const [playerData, setPlayerData] = useState({
-    //     id: '',
-    //     playerWins: 0,
-    //     playerLosses: 0,
-    //     playerName: '',
-    //     playerAvatar: '',
-    // })
-
+    // const [playerOneWins, setPlayerOneWins] = useState(0)
+    // const [playerTwoWins, setPlayerTwoWins] = useState(0)
 
     useEffect(() => {
         checkTie()
@@ -45,24 +36,33 @@ const Board = ({position, setValue,placeholdernameWinner}) => {
 
     const handleAddWins = () => {
 
-
-
-        // fetch(`http://localhost:9292/player`, {
-        //     method: "PATCH",
-        //     headers: {
-        //         "Content-Type": "application/json",
-        //     },
-        //     body: JSON.stringify({
-                
-        //     })
-        // })
-        // .then(r => r.json)
-        // .then(updatedPoints => setPlayerOneWins(updatedPoints))
-
-
-
-
-
+        console.log(playerOneData.id)
+        fetch(`http://localhost:9292/players/${playerOneData.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                playerWins: playerOneData.playerWins,
+                playerLosses: playerOneData.playerLosses
+            })
+        })
+        .then(r => r.json)
+        .then(updatedPoints => setPlayerOneData(updatedPoints))
+    }
+    const handleAddWinsTwo = () => {
+        fetch(`http://localhost:9292/players/${playerTwoData.id}`, {
+            method: "PATCH",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                playerWins: playerTwoData.playerWins,
+                playerLosses: playerTwoData.playerLosses
+            })
+        })
+        .then(r => r.json)
+        .then(updatedPoints => setPlayerTwoData(updatedPoints))
 
     }
 
@@ -80,11 +80,12 @@ const Board = ({position, setValue,placeholdernameWinner}) => {
                     handleAddWins()
                     placeholdernameWinner("x")
                 } else if(player === "O") {
-                    placeholdernameWinner("o")
-                    
+
+                    handleAddWinsTwo()
+
                 }
                 setResult({winner: player, gameOver: 'Won'})
-                restartGame()
+                restartGame();
             }
         })
     }
@@ -94,7 +95,6 @@ const Board = ({position, setValue,placeholdernameWinner}) => {
         position.forEach((square) => {
             if(square === "") {
                 filled = false
-                
             }
         })
         if(filled) {
@@ -116,12 +116,10 @@ const Board = ({position, setValue,placeholdernameWinner}) => {
 //             o: id of player o,
 //             winner: if of who won,
 //             loser: id of who lost,
-        
 //         })
 //     })
 //     .then(function(res){ console.log(res) })
 //     .catch(function(res){ console.log(res) })
-
 //  ]
 
 
@@ -136,7 +134,7 @@ const Board = ({position, setValue,placeholdernameWinner}) => {
     }
     return (
         <>
-            <DisplayWinners playerOnePoints={playerOneWins} playerTwoPoints={playerTwoWins}/>
+            <DisplayWinners dataOne={playerOneData} dataTwo={playerTwoData}/> 
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>
                 <Square val={position[1]} chooseSquare={() => chooseSquare(1)}/>

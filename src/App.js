@@ -9,6 +9,7 @@ import Playerslist2 from './components/playerslist2';
 
 function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
+
   const [allPlayers, setallPlayers] = useState([])
 const [selectedPlayer1, setselectedPlayer1] = useState()
 const [selectedPlayer2, setselectedPlayer2] = useState()
@@ -58,7 +59,21 @@ console.log(winner)
 
 /////////// DOM ONLY LOADS ONCE ALL PLAYERS ARE LOADED 
 ////////////
+
+  const [playerOneData, setPlayerOneData] = useState({
+    playerWins: 0,
+    playerLosses: 0,
+    playerName: '',
+    playerAvatar: '',
+})
+const [playerTwoData, setPlayerTwoData] = useState({
+    playerWins: 0,
+    playerLosses: 0,
+    playerName: '',
+    playerAvatar: '',
+})
 if (!allPlayers) return <h1>Loading</h1>
+
   return (
     <div className='app'>
       
@@ -70,10 +85,11 @@ if (!allPlayers) return <h1>Loading</h1>
         <NavLink className='links' to='/'>Game board</NavLink>
         <NavLink className='links' to='/playerinfo'>Player Info</NavLink>
         <Routes>
-            <Route path="new" element={<Form /> } /> 
+
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
-            <Route path="/" element={<Board placeholdernameWinner={placeholdernameWinner} position={board} setValue={setBoard}/>}/>  
-          
+            <Route path="new" element={<Form playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
+            <Route path="/" element={<Board position={board} setValue={setBoard} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
+
         </Routes>
       </div>
       <div   classname="playerlist">
