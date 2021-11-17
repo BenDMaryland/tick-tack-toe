@@ -5,7 +5,7 @@ import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
 
 
-const Board = ({selectedPlayer1,selectedPlayer2, position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
+const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2, position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
 
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
@@ -35,20 +35,25 @@ const Board = ({selectedPlayer1,selectedPlayer2, position, setValue, playerOneDa
     }
 
     const handleAddWins = () => {
+
+////player1 wins 
+
 console.log(selectedPlayer1.id)
-        console.log(playerOneData.id)
-        fetch(`http://localhost:9292/players/${selectedPlayer1.id}`, {
+        console.log(currentGameInstance)
+
+
+        fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                playerWins: playerOneData.playerWins,
-                playerLosses: playerOneData.playerLosses
+                winner: selectedPlayer1.id,
+                loser:selectedPlayer2.id
             })
         })
         .then(r => r.json)
-        .then(updatedPoints => setPlayerOneData(updatedPoints))
+
     }
     const handleAddWinsTwo = () => {
         console.log(selectedPlayer2.id)
@@ -64,7 +69,7 @@ console.log(selectedPlayer1.id)
         })
         .then(r => r.json)
         .then(updatedPoints => setPlayerTwoData(updatedPoints))
-
+      
     }
 
     const checkWin = () => {
@@ -104,24 +109,9 @@ console.log(selectedPlayer1.id)
         }
     }
 
-//  function postHanlder ()[
-//     fetch("http://localhost:9292/",
-//     {
-//         headers: {
-//           'Accept': 'application/json',
-//           'Content-Type': 'application/json'
-//         },
-//         method: "POST",
-//         body: JSON.stringify({
-//             x: id of player x, 
-//             o: id of player o,
-//             winner: if of who won,
-//             loser: id of who lost,
-//         })
-//     })
-//     .then(function(res){ console.log(res) })
-//     .catch(function(res){ console.log(res) })
-//  ]
+
+   
+
 
 
 
@@ -132,6 +122,7 @@ console.log(selectedPlayer1.id)
     const restartGame = () => {
         setValue(["","","","","","","","",""])
         setPlayer("X")
+        resetPlayers()
     }
     return (
         <>
