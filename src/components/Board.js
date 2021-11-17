@@ -5,7 +5,7 @@ import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
 
 
-const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
+const Board = ({selectedPlayer1,selectedPlayer2, position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
 
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
@@ -35,9 +35,9 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
     }
 
     const handleAddWins = () => {
-
+console.log(selectedPlayer1.id)
         console.log(playerOneData.id)
-        fetch(`http://localhost:9292/players/${playerOneData.id}`, {
+        fetch(`http://localhost:9292/players/${selectedPlayer1.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -51,7 +51,8 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
         .then(updatedPoints => setPlayerOneData(updatedPoints))
     }
     const handleAddWinsTwo = () => {
-        fetch(`http://localhost:9292/players/${playerTwoData.id}`, {
+        console.log(selectedPlayer2.id)
+        fetch(`http://localhost:9292/players/${selectedPlayer2.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -78,7 +79,7 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
             if(foundWinningPattern) {
                 if(player === 'X') {
                     handleAddWins()
-                    placeholdernameWinner("x")
+                  
                 } else if(player === "O") {
 
                     handleAddWinsTwo()
@@ -134,7 +135,7 @@ const Board = ({position, setValue, playerOneData, setPlayerOneData, playerTwoDa
     }
     return (
         <>
-            <DisplayWinners dataOne={playerOneData} dataTwo={playerTwoData}/> 
+            <DisplayWinners  selectedPlayer2={selectedPlayer2}  selectedPlayer1={selectedPlayer1}   dataOne={playerOneData} dataTwo={playerTwoData}/> 
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>
                 <Square val={position[1]} chooseSquare={() => chooseSquare(1)}/>

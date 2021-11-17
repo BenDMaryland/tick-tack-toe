@@ -11,12 +11,20 @@ function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
 
   const [allPlayers, setallPlayers] = useState([])
-const [selectedPlayer1, setselectedPlayer1] = useState()
-const [selectedPlayer2, setselectedPlayer2] = useState()
+const [selectedPlayer1, setselectedPlayer1] = useState({
+player_name: ""
 
 
 
 
+})
+const [selectedPlayer2, setselectedPlayer2] = useState({
+  player_name: ""
+  
+  
+  
+  
+  })
 
 
 
@@ -43,12 +51,7 @@ function playerTwoSelectionHandler(player){
   setselectedPlayer2({...player, ["o"]: "o"})
 }
 
-function placeholdernameWinner(winner){
 
-console.log(winner)
-{winner==="x" ? console.log(selectedPlayer1) : console.log(selectedPlayer2) }
-
-}
 
 
 
@@ -77,8 +80,8 @@ if (!allPlayers) return <h1>Loading</h1>
   return (
     <div className='app'>
       
-<div   classname="playerlist">
-{allPlayers.map((player)=>  { return (<PlayersList1 classname={"playerlist"} playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}    />  )} )}
+<div   className="playderlist">
+{allPlayers.map((player)=>  { return (<PlayersList1 className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}    />  )} )}
 </div>
       <div className="board">
         <NavLink className='links' to='/new'>Create Players</NavLink>
@@ -88,12 +91,12 @@ if (!allPlayers) return <h1>Loading</h1>
 
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
             <Route path="new" element={<Form playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
-            <Route path="/" element={<Board position={board} setValue={setBoard} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
+            <Route path="/" element={<Board position={board} setValue={setBoard} selectedPlayer2={selectedPlayer2} playerOneData={playerOneData}  selectedPlayer1={selectedPlayer1}   setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
 
         </Routes>
       </div>
       <div   classname="playerlist">
-{allPlayers.map((player)=>  { return (<Playerslist2 classname={"playerlist"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={player} key={player.id}    />  )} )}
+{allPlayers.map((player)=>  { return (<Playerslist2 className={"playerlist"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={player} key={player.id}    />  )} )}
 </div>
     </div>
   )

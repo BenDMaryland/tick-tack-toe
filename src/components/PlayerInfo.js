@@ -2,6 +2,8 @@ import React from 'react'
 import '../styles.css';
 function PlayerInfo({player:{id,player_name,player_wins,player_losses,player_avatar}}) {
 
+console.log(id)
+
 
     return (
         <div id="playerinfo"  style={{"display":"inline-block"}} style={{"border":"solid"}}              >

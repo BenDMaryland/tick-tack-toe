@@ -1,10 +1,13 @@
 import '../styles.css';
 
-const DisplayWinners = ({dataOne, dataTwo}) => {
+const DisplayWinners = ({selectedPlayer1,selectedPlayer2,dataOne, dataTwo}) => {
+
+console.log(selectedPlayer1.player_name)
+
     return (
         <div className="winners">
-           <h2>{`Winner 1: ${dataOne.playerWins}`}</h2>
-            <h2>{`Winner 2: ${dataTwo.playerWins}`}</h2>
+           <h2>{`Player 1: ${selectedPlayer1.player_name }`}</h2>
+            <h2>{`Player  2: ${selectedPlayer2.player_name }`}</h2>
         </div>
     )
 }
