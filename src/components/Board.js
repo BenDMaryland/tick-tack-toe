@@ -37,7 +37,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
 else {}}
 
     const handleAddWins = () => {
-        console.log(currentGameInstance)
+   
         fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
@@ -45,7 +45,8 @@ else {}}
             },
             body: JSON.stringify({
                 winner: selectedPlayer1.id,
-                loser:selectedPlayer2.id
+                loser:selectedPlayer2.id,
+                board:position
             })
         })
         .then(r => r.json)
@@ -58,7 +59,8 @@ else {}}
             },
             body: JSON.stringify({
                 winner: selectedPlayer2.id,
-                loser:selectedPlayer1.id
+                loser:selectedPlayer1.id,
+                board:position
             })
         })
         .then(r => r.json)
