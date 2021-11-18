@@ -3,12 +3,14 @@ import Square from './Square'
 import {useState, useEffect} from 'react'
 import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
+import WinModal from './WinModal';
 
 
 const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2, position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
 
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
+    const [modalOpen, setModalOpen] = useState(false)
 
     useEffect(() => {
         checkTie()
@@ -18,12 +20,9 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
     }, [position]);
 
     useEffect(() => {
-        if(result.gameOver != 'none') {
-            alert("You've won!")
-            // <WinScreen />
-            // console.log('hi')
-        } 
-    }, [result])
+        if(result.winner != '') setModalOpen(true)
+        
+        }, [result])
     
     const chooseSquare = (square) => {    
         console.log()
@@ -110,6 +109,7 @@ else {}}
     }
     return (
         <>
+            {modalOpen === true? <WinModal setModal={setModalOpen} result={player}/> : null}
             <DisplayWinners  selectedPlayer2={selectedPlayer2} selectedPlayer1={selectedPlayer1} dataOne={playerOneData} dataTwo={playerTwoData}/> 
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>
