@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PlayersList2({selected2,playerTwoSelectionHandler,player,player:{id,player_name,player_wins,player_losses,player_avatar}}) {
+function PlayersList2({ selected2, playerTwoSelectionHandler, player, player: { player_name, player_avatar} }) {
 
 
     return (
@@ -12,7 +12,5 @@ function PlayersList2({selected2,playerTwoSelectionHandler,player,player:{id,pla
         </div>
     )
 }
-    
-
-
+ 
 export default PlayersList2

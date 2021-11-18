@@ -12,36 +12,21 @@ function App() {
   const [selected1, setselected1] = useState(false)
   const [selected2, setselected2] = useState(false)
   const [allPlayers, setallPlayers] = useState([])
-  const [currentGameInstance, setcurrentGameInstance] = useState()
-const [domUpdate, setdomUpdate] = useState(0)
+  const [currentGameInstance, setcurrentGameInstance] = useState({})
+  const [domUpdate, setdomUpdate] = useState(0)
 
 const [selectedPlayer1, setselectedPlayer1] = useState({
-player_name: "",
-player_avatar:""
-
-
-
+  player_name: "",
+  player_avatar:""
 })
-const [selectedPlayer2, setselectedPlayer2] = useState({
-  player_name: ""
-  
-  
-  
-  
-  })
+
+const [selectedPlayer2, setselectedPlayer2] = useState({player_name: ""})
 
 function domupdateHandler(){
-
   setdomUpdate((domUpdate)=>domUpdate+1)
-console.log("it ran ")
-
+  console.log("it ran ")
 }
 console.log(domUpdate)
-
-
-
-
-
 
 /// This use effect grabs all the players 
 //// CURRENT ISSUE WHEN A NEW PLAYER IS MADE DOM DOESN NOT UPDATE 
@@ -65,11 +50,7 @@ function playerTwoSelectionHandler(player){
   setselected2(true)
 }
 
-
-
-
 function resetPlayers(){
-
   setselected1(false)
   setselected2(false)
   setselectedPlayer1({player_name: "", player_avatar:""})
@@ -78,25 +59,11 @@ function resetPlayers(){
 }
 console.log(selected1)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
 useEffect(() => {
-if (selected1 ===true &&selected2===true ){
- console.log("ready to start game ")
- console.log("x is ",selectedPlayer1.id)
- console.log("o is ",selectedPlayer2.id)
-
+  if (selected1 === true && selected2 === true ){
+  console.log("ready to start game ")
+  console.log("x is ",selectedPlayer1.id)
+  console.log("o is ",selectedPlayer2.id)
 
  fetch(`http://localhost:9292/game_instances`, {
             method: "POST",
@@ -109,17 +76,13 @@ if (selected1 ===true &&selected2===true ){
             })
         })
         .then(r => r.json())
-        .then(data=>setcurrentGameInstance(data))
-   
+        .then(data => setcurrentGameInstance(data))
 }
 
-
-}, [selected1,domUpdate])
+}, [selected1, selected2 ,domUpdate])
 
 // console.log("player one is :",selectedPlayer1)
 // console.log("player two is :",selectedPlayer2)
-
-
 
 /////////// DOM ONLY LOADS ONCE ALL PLAYERS ARE LOADED 
 ////////////
@@ -142,7 +105,13 @@ if (!allPlayers) return <h1>Loading</h1>
     <div className='app'>
       
 <div   className="playderlist">
-{selectedPlayer1.player_name!= "" ? <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={selectedPlayer1}     />  :allPlayers.map((player)=>  { return (<PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}    />  )} )   }
+  {selectedPlayer1.player_name != ""
+  ? <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={selectedPlayer1}/> 
+  : allPlayers.map((player) => {
+    return (
+      <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}    
+    />)})}
+
 </div>
       <div className="board">
         <NavLink className='links' to='/new'>Create Players</NavLink>
