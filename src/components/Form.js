@@ -3,8 +3,6 @@ import {useState} from 'react'
 
 const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
 
-     
-
     const handleSubmit = (event) => {
         event.preventDefault()
 
@@ -61,7 +59,6 @@ const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, 
                 ...playerTwoData,[e.target.name] : e.target.value
             })
     }
-
     
     return (
         <div className="form">

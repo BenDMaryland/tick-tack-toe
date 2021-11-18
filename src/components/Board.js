@@ -9,8 +9,6 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
 
     const [player, setPlayer] = useState("O");
     const [result, setResult] = useState({winner:"" ,gameOver: "none"})
-    // const [playerOneWins, setPlayerOneWins] = useState(0)
-    // const [playerTwoWins, setPlayerTwoWins] = useState(0)
 
     useEffect(() => {
         checkTie()
@@ -35,13 +33,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
     }
 
     const handleAddWins = () => {
-
-////player1 wins 
-
-console.log(selectedPlayer1.id)
         console.log(currentGameInstance)
-
-
         fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
@@ -53,17 +45,8 @@ console.log(selectedPlayer1.id)
             })
         })
         .then(r => r.json)
-
-
-
-
-
     }
     const handleAddWinsTwo = () => {
-
-
-
-    
         fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
@@ -75,7 +58,6 @@ console.log(selectedPlayer1.id)
             })
         })
         .then(r => r.json)
-      
     }
 
     const checkWin = () => {
@@ -115,16 +97,6 @@ console.log(selectedPlayer1.id)
         }
     }
 
-
-   
-
-
-
-
-
-
-
-
     const restartGame = () => {
         setValue(["","","","","","","","",""])
         setPlayer("X")
@@ -132,7 +104,7 @@ console.log(selectedPlayer1.id)
     }
     return (
         <>
-            <DisplayWinners  selectedPlayer2={selectedPlayer2}  selectedPlayer1={selectedPlayer1}   dataOne={playerOneData} dataTwo={playerTwoData}/> 
+            <DisplayWinners  selectedPlayer2={selectedPlayer2} selectedPlayer1={selectedPlayer1} dataOne={playerOneData} dataTwo={playerTwoData}/> 
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>
                 <Square val={position[1]} chooseSquare={() => chooseSquare(1)}/>
