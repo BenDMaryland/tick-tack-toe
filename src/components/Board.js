@@ -25,15 +25,19 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
         } 
     }, [result])
     
-    const chooseSquare = (square) => {
-        setValue(position.map((val, idx) => {
-            if(idx === square && val === "") return player
-            return val
-        }))
-    }
+    const chooseSquare = (square) => {    
+        console.log()
+        if (position[square]== "" )  {  
+            if (selectedPlayer1.player_name === "" || selectedPlayer2.player_name === ""){ alert ("please pick player")
+}           else {
+                    setValue(position.map((val, idx) => {
+                     if(idx === square && val === "") return player
+                     return val
+        })) }}   
+else {}}
 
     const handleAddWins = () => {
-        console.log(currentGameInstance)
+   
         fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
@@ -41,7 +45,8 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
             },
             body: JSON.stringify({
                 winner: selectedPlayer1.id,
-                loser:selectedPlayer2.id
+                loser:selectedPlayer2.id,
+                board:position
             })
         })
         .then(r => r.json)
@@ -54,7 +59,8 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
             },
             body: JSON.stringify({
                 winner: selectedPlayer2.id,
-                loser:selectedPlayer1.id
+                loser:selectedPlayer1.id,
+                board:position
             })
         })
         .then(r => r.json)

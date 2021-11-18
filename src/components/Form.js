@@ -63,13 +63,13 @@ const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, 
     return (
         <div className="form">
             <form className = 'form' onSubmit={handleSubmit}>
-            <h2>Player 1</h2> 
+            <h2>Add New Player!</h2> 
                 <input name='playerName' placeholder='Full Name' value={playerOneData.playerName} onChange={handleChange}/>
                 <input  name='playerAvatar' placeholder='avatar' value={playerOneData.playerAvatar} onChange={handleChange}/>
                 <input type='submit' className='submit'/>
             </form>
             <form className = 'formTwo' onSubmit={handleSubmitTwo}>
-            <h2>Player 2</h2> 
+            <h2>Add New Player!</h2> 
                 <input name='playerName' placeholder='Full Name' value={playerTwoData.playerName} onChange={handleChangeTwo}/>
                 <input  name='playerAvatar' placeholder='avatar' value={playerTwoData.playerAvatar} onChange={handleChangeTwo}/>
                 <input type='submit' className='submitTwo'/>
