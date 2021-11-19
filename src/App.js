@@ -7,9 +7,6 @@ import PlayerInfo from "./components/PlayerInfo"
  import PlayersList1 from './components/PlayersList1';
 import PlayersList2 from './components/playerslist2';
 import PreviousGames from './components/PreviousGames';
-import Header from './Header';
-import Background from './Background';
-import ParticlesBG from './ParticlesBG';
 
 function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
@@ -102,7 +99,7 @@ const [playerTwoData, setPlayerTwoData] = useState({
 if (!allPlayers) return <h1>Loading</h1>
   return (
     <div className='app'>
-
+      
 <div   className="playderlist">
   {selectedPlayer1.player_name != ""
   ? <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={selectedPlayer1}/> 
@@ -115,16 +112,16 @@ if (!allPlayers) return <h1>Loading</h1>
         <NavLink className='links' to='/playerinfo'>Leaderboard</NavLink>
         <NavLink className='links' to='/previousgames'>Previous Games</NavLink>
         <Routes>
-            <Route path="previousgames" element={ FetchedGames.map((game)=>  { return <PreviousGames key={game.id}  game={game}    />  }   )  } />
+            <Route path="previousgames" element={ FetchedGames.map((game)=>  { return <PreviousGames   game={game}    />  }   )  } />
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
             <Route path="new" element={<Form domupdateHandler={domupdateHandler} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
             <Route path="/" element={<Board resetPlayers={resetPlayers} position={board} setValue={setBoard} currentGameInstance={currentGameInstance}  selectedPlayer2={selectedPlayer2} playerOneData={playerOneData}  selectedPlayer1={selectedPlayer1}   setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
+
         </Routes>
       </div>
       <div   classname="playerlist">
 {   selectedPlayer2.player_name!= "" ? <PlayersList2  selected2={selected2} className={"k"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={selectedPlayer2}     />   :allPlayers.filter(player=> player.id!=selectedPlayer1.id ).map((player)=>  { return (<PlayersList2 className={"playerlist"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={player} key={player.id}    />  )} )}
 </div>
-
     </div>
   )
 }

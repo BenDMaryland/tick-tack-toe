@@ -4,7 +4,6 @@ import {useState, useEffect} from 'react'
 import {patterns} from '../patterns'
 import DisplayWinners from './DisplayWinners';
 import WinModal from './WinModal';
-import ParticlesBG from '../ParticlesBG';
 
 
 const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2, position, setValue, playerOneData, setPlayerOneData, playerTwoData, setPlayerTwoData}) => {
