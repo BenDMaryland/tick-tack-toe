@@ -11,6 +11,7 @@ gem "thin", "~> 1.8"
 # Rack middleware. Used specifically for parsing the request body into params.
 # https://github.com/rack/rack-contrib
 gem "rack-contrib", "~> 2.3"
+gem 'pry'
 
 # More Rack middleware! Used to handle CORS requests
 # https://github.com/cyu/rack-cors
