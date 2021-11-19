@@ -10,13 +10,13 @@ function PreviousGames({game:{id,winner,loser,board,players}}) {
 /// when i do the equation in here it leaves some charcters in the first and last position, so the first and last function are diffrent. 
 
 function value1(board){
-   return  board.replace("[","").replace(/"/g,"").split(",")[0].length == 0?  "k" :board.replace(/"/g,"").split(",")[0].charAt(1)}
+   return  board.replace("[","").replace(/"/g,"").split(",")[0].length == 0?  "ㅤ" :board.replace(/"/g,"").split(",")[0].charAt(1)}
 
 function value27(board,i){
-return board.replace(/"/g,"").split(",")[i]== " "?  "k" : board.replace(/"/g,"").split(",")[i].charAt(1) }
+return board.replace(/"/g,"").split(",")[i]== " "?  "ㅤ" : board.replace(/"/g,"").split(",")[i].charAt(1) }
 
 function value8(board){
-return board.replace(/"/g,"").split(",")[8].length ==2 ?  "k" : board.replace(/"/g,"").split(",")[8].charAt(1) }
+return board.replace(/"/g,"").split(",")[8].length ==2 ?  "ㅤ" : board.replace(/"/g,"").split(",")[8].charAt(1) }
 
 
 
@@ -65,9 +65,9 @@ else {
            <br/>
           <h4 style={{"display": "inline" }}> __________</h4>
           <br style={{"lineHeight":"0px"}} />
-           <p style={{"display": "inline" }}>{value27(board,3)} </p>
+           <p style={{"display": "inline" }}> {value27(board,3)} </p>
            <h4 style={{"display": "inline" }}> |</h4>
-           <p style={   {"display": "inline" }}>{value27(board,4)} </p>
+           <p style={   {"display": "inline" }}> {value27(board,4)} </p>
            <h4 style={{"display": "inline" }}> |</h4>
            <p style={   {"display": "inline" }}>  {value27(board,5)} </p>
            <br/>
