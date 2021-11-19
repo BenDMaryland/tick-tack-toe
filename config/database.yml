@@ -7,7 +7,6 @@ development:
 production:
   adapter: postgresql
   encoding: unicode
-  database: development
   pool: 5
   host: <&- ENV ['DATABASE_HOST'] %>
   database: production
