@@ -5,6 +5,7 @@ const Board = ({val, chooseSquare}) => {
         <div className="square" onClick={chooseSquare}>
            {val}
         </div>
+
     )
 }
 

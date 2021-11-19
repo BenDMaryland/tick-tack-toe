@@ -9,7 +9,17 @@ function PlayerInfo({player:{id,player_name,player_wins,player_losses,player_ava
          <p>Loses: {player_losses}</p>
          <br />
          <p>wins: {player_wins}</p>
-   
+        
+        
+      <ul class="box-area">
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      <li></li>
+      </ul>
+
 
         </div>
     )

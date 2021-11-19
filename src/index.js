@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import Header from './Header';
+import Background from './Background'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -11,6 +12,7 @@ ReactDOM.render(
         <App />
       </BrowserRouter>
   </React.StrictMode>,
+  
   document.getElementById('root')
 );
 

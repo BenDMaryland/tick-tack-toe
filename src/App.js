@@ -8,6 +8,7 @@ import PlayerInfo from "./components/PlayerInfo"
 import PlayersList2 from './components/playerslist2';
 import PreviousGames from './components/PreviousGames';
 import Header from './Header';
+import Background from './Background';
 
 function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
@@ -99,7 +100,6 @@ const [playerTwoData, setPlayerTwoData] = useState({
 
 if (!allPlayers) return <h1>Loading</h1>
   return (
-
     <div className='app'>
 
 <div   className="playderlist">
@@ -124,6 +124,7 @@ if (!allPlayers) return <h1>Loading</h1>
       <div   classname="playerlist">
 {   selectedPlayer2.player_name!= "" ? <PlayersList2  selected2={selected2} className={"k"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={selectedPlayer2}     />   :allPlayers.filter(player=> player.id!=selectedPlayer1.id ).map((player)=>  { return (<PlayersList2 className={"playerlist"} playerTwoSelectionHandler={playerTwoSelectionHandler}  player={player} key={player.id}    />  )} )}
 </div>
+
     </div>
   )
 }
