@@ -1,5 +1,7 @@
 import React from 'react'
 import '../styles.css';
+import ParticlesBG from '../ParticlesBG';
+
 function PlayerInfo({player:{id,player_name,player_wins,player_losses,player_avatar}}) {
 
     return (
@@ -9,19 +11,8 @@ function PlayerInfo({player:{id,player_name,player_wins,player_losses,player_ava
          <p>Loses: {player_losses}</p>
          <br />
          <p>wins: {player_wins}</p>
-        
-        
-      <ul class="box-area">
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      <li></li>
-      </ul>
-
-
         </div>
+        
     )
 }
 

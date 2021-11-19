@@ -3,7 +3,8 @@ import ReactDOM from 'react-dom';
 import App from './App';
 import {BrowserRouter} from 'react-router-dom';
 import Header from './Header';
-import Background from './Background'
+import Background from './Background';
+import ParticlesBG from './ParticlesBG';
 
 ReactDOM.render(
   <React.StrictMode>

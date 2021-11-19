@@ -9,6 +9,7 @@ import PlayersList2 from './components/playerslist2';
 import PreviousGames from './components/PreviousGames';
 import Header from './Header';
 import Background from './Background';
+import ParticlesBG from './ParticlesBG';
 
 function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
@@ -118,7 +119,6 @@ if (!allPlayers) return <h1>Loading</h1>
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
             <Route path="new" element={<Form domupdateHandler={domupdateHandler} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
             <Route path="/" element={<Board resetPlayers={resetPlayers} position={board} setValue={setBoard} currentGameInstance={currentGameInstance}  selectedPlayer2={selectedPlayer2} playerOneData={playerOneData}  selectedPlayer1={selectedPlayer1}   setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
-
         </Routes>
       </div>
       <div   classname="playerlist">

@@ -1,4 +1,6 @@
 import '../styles.css';
+import ParticlesBG from '../ParticlesBG';
+
 function PlayersList1({selected1, playerOneSelectionHandler, player, player: {player_name, player_avatar} }) {
     return (
         <div  style={{"border":"solid"}}>
