@@ -7,6 +7,7 @@ import PlayerInfo from "./components/PlayerInfo"
  import PlayersList1 from './components/PlayersList1';
 import PlayersList2 from './components/playerslist2';
 import PreviousGames from './components/PreviousGames';
+import Header from './Header';
 
 function App() {
   const [board, setBoard] = useState(["","","","","","","","",""])
@@ -98,8 +99,9 @@ const [playerTwoData, setPlayerTwoData] = useState({
 
 if (!allPlayers) return <h1>Loading</h1>
   return (
+
     <div className='app'>
-      
+
 <div   className="playderlist">
   {selectedPlayer1.player_name != ""
   ? <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={selectedPlayer1}/> 

@@ -5,9 +5,9 @@ function PlayersList2({ selected2, playerTwoSelectionHandler, player, player: { 
 
     return (
         <div  style={{"border":"solid"}}           >
-         <img   style={{"width": "150px"}} src={player_avatar}></img>   
-         <h4>{player_name}</h4>
-         {selected2 ? null : <button onClick={()=>playerTwoSelectionHandler(player)}   >Pick player</button>}
+         <img   style={{"width": "150px"}} src={player_avatar} id="img2"></img>   
+         <h4 id="name2">{player_name}</h4>
+         {selected2 ? null : <button onClick={()=>playerTwoSelectionHandler(player)} id="pick2">Pick player</button>}
  
         </div>
     )
