@@ -25,7 +25,6 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
         }, [result])
     
     const chooseSquare = (square) => {    
-        console.log()
         if (position[square]== "" )  {  
             if (selectedPlayer1.player_name === "" || selectedPlayer2.player_name === ""){ alert ("please pick player")
 }           else {
@@ -33,7 +32,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
                      if(idx === square && val === "") return player
                      return val
         })) }}   
-else {}}
+            else {}}
 
     const handleAddWins = () => {
    
@@ -109,7 +108,7 @@ else {}}
     }
     return (
         <>
-            {modalOpen === true? <WinModal setModal={setModalOpen} result={player}/> : null}
+            {modalOpen === true? <WinModal setModal={setModalOpen} result={result}/> : null}
             <DisplayWinners  selectedPlayer2={selectedPlayer2} selectedPlayer1={selectedPlayer1} dataOne={playerOneData} dataTwo={playerTwoData}/> 
             <div className="row">
                 <Square val={position[0]} chooseSquare={() => chooseSquare(0)}/>

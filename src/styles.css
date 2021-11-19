@@ -101,6 +101,14 @@ body {
     flex-direction: row;
 }
 
+.winLossDisplay {
+  border:solid;
+  display: inline-block;
+  margin: 10px;
+}
+.winLossDisplay p {
+    margin: 10px;
+  }
 
 .square {
     flex: 33%;
@@ -151,28 +159,28 @@ body {
     text-align: center;
   }
 
-  .form {
-        width:55%;
-        height: 50%;
-        display:flexbox;
-        margin: 25px auto 0;
-        padding: 1em;
-        -moz-border-radius: 10px;
-        -webkit-border-radius: 10px;
-        text-align: center;
+  .formOne {
+    width:30%;
+    background-color:darkgray;
+    border: 1px solid white;
+    margin: 50px auto 0;
+    padding: 1em;
+    -moz-border-radius: 10px;
+    -webkit-border-radius: 10px;
+    text-align: center;
   }
 
   .formTwo {
-    width:55%;
-    height: 50%;
-    display:flexbox;
+    width:30%;
+    background-color:darkgray;
+    border: 1px solid white;
     margin: 25px auto 0;
     padding: 1em;
     -moz-border-radius: 10px;
     -webkit-border-radius: 10px;
     text-align: center;
   }
-  .submit:hover{
+  .submitOne:hover{
     background-color: #218824; 
     color: white;
     cursor: pointer
@@ -242,6 +250,7 @@ body {
     cursor: pointer;
     position: relative;
     z-index: 1;
+    text-decoration: none;
 }
 
 .links::after {

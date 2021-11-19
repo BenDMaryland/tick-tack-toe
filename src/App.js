@@ -109,7 +109,7 @@ if (!allPlayers) return <h1>Loading</h1>
       <div className="board">
         <NavLink className='links' to='/new'>Create Players</NavLink>
         <NavLink className='links' to='/'>Game board</NavLink>
-        <NavLink className='links' to='/playerinfo'>Player Info</NavLink>
+        <NavLink className='links' to='/playerinfo'>Leaderboard</NavLink>
         <NavLink className='links' to='/previousgames'>Previous Games</NavLink>
         <Routes>
             <Route path="previousgames" element={ FetchedGames.map((game)=>  { return <PreviousGames   game={game}    />  }   )  } />
