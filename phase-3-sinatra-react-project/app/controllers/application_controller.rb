@@ -45,7 +45,7 @@ player = Player.find(params[:id])
 
 player.add_wins  
 
-
+puts"hi"
 player.to_json
 end
 
