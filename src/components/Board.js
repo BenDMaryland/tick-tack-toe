@@ -44,7 +44,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
             body: JSON.stringify({
                 winner: selectedPlayer1.id,
                 loser:selectedPlayer2.id,
-                board:position
+                board:position.join()
             })
         })
         .then(r => r.json)
@@ -58,7 +58,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
             body: JSON.stringify({
                 winner: selectedPlayer2.id,
                 loser:selectedPlayer1.id,
-                board:position
+                board:position.join()
             })
         })
         .then(r => r.json)

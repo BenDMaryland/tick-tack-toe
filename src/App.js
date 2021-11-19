@@ -103,7 +103,7 @@ if (!allPlayers) return <h1>Loading</h1>
 <div   className="playderlist">
   {selectedPlayer1.player_name != ""
   ? <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={selectedPlayer1}/> 
-  : allPlayers.filter(player=> player.id!=selectedPlayer2.id ).map((player) => { return ( <PlayersList1  selected1={selected1} className={"k"} playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}/>)})}
+  : allPlayers.filter(player=> player.id!=selectedPlayer2.id ).map((player) => { return ( <PlayersList1   selected1={selected1} className={"k"}  playerOneSelectionHandler={playerOneSelectionHandler}  player={player} key={player.id}/>)})}
 
 </div>
       <div className="board">
@@ -112,7 +112,7 @@ if (!allPlayers) return <h1>Loading</h1>
         <NavLink className='links' to='/playerinfo'>Leaderboard</NavLink>
         <NavLink className='links' to='/previousgames'>Previous Games</NavLink>
         <Routes>
-            <Route path="previousgames" element={ FetchedGames.map((game)=>  { return <PreviousGames   game={game}    />  }   )  } />
+            <Route path="previousgames" element={ FetchedGames.map((game)=>  { return <PreviousGames    game={game}    />  }   )  } />
             <Route path="playerinfo" element={allPlayers.map((player)=>  { return (<PlayerInfo player={player} key={player.id}    />  )} )} />
             <Route path="new" element={<Form domupdateHandler={domupdateHandler} playerOneData={playerOneData} setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/> } /> 
             <Route path="/" element={<Board resetPlayers={resetPlayers} position={board} setValue={setBoard} currentGameInstance={currentGameInstance}  selectedPlayer2={selectedPlayer2} playerOneData={playerOneData}  selectedPlayer1={selectedPlayer1}   setPlayerOneData={setPlayerOneData} playerTwoData={playerTwoData} setPlayerTwoData={setPlayerTwoData}/>}/>  
