@@ -1,3 +1,8 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
 .app {
     width: 100vw;
     height: 70vh;
@@ -27,6 +32,8 @@
   font-family: Avenir;
   font-size: 48px;
   text-align: center;
+  /* height: 100%; */
+  text-shadow: 2px 2px grey;
 }
 
 /* @keyframes change-color {
@@ -264,7 +271,7 @@ color: #218824;
 
 }
 
-/* 
+
 #root {
 	background: linear-gradient(to left, #8942a8, #ba382f);
 	width: 100%;
@@ -335,4 +342,4 @@ color: #218824;
 		transform: translateY(-800px) rotate(360deg);
 		opacity: 0;
 	}
-} */
+}
