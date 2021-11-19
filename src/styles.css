@@ -101,6 +101,14 @@ body {
     flex-direction: row;
 }
 
+.winLossDisplay {
+  border:solid;
+  display: inline-block;
+  margin: 10px;
+}
+.winLossDisplay p {
+    margin: 10px;
+  }
 
 .square {
     flex: 33%;
