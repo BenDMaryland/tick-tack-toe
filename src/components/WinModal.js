@@ -13,7 +13,7 @@ const WinModal = ({setModal, result}) => {
                 <h1>Game Over!</h1>
                 </div>
                 <div className="body">
-                    {`Winner is: ${result}`}
+                    {`Winner is: ${result.winner}`}
                 </div>
                 <div className="footer">
                 <button
