@@ -36,7 +36,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
 
     const handleAddWins = () => {
    
-        fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
+        fetch(`https://the-greatest-battle.herokuapp.com/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",
@@ -50,7 +50,7 @@ const Board = ({resetPlayers,currentGameInstance,selectedPlayer1,selectedPlayer2
         .then(r => r.json)
     }
     const handleAddWinsTwo = () => {
-        fetch(`http://localhost:9292/game_instances/${currentGameInstance.id}`, {
+        fetch(`https://the-greatest-battle.herokuapp.com/game_instances/${currentGameInstance.id}`, {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

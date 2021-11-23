@@ -13,7 +13,7 @@ const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, 
             playerAvatar: playerOneData.playerAvatar,
         }
 
-        fetch('http://localhost:9292/players', {
+        fetch('https://the-greatest-battle.herokuapp.com/players', {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
@@ -36,7 +36,7 @@ const Form = ({domupdateHandler,playerOneData, setPlayerOneData, playerTwoData, 
             playerAvatar: playerTwoData.playerAvatar,
         }
        
-        fetch('http://localhost:9292/players', {
+        fetch('https://the-greatest-battle.herokuapp.com/players', {
             method: "POST",
             headers: {
                 "Content-Type" : "application/json",
