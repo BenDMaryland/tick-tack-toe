@@ -31,13 +31,13 @@ function domupdateHandler(){
 //// CURRENT ISSUE WHEN A NEW PLAYER IS MADE DOM DOESN NOT UPDATE 
 ///// ONCE PLAYES IS MADE ITS PUT IN USESATE ALLPLAYERS
   useEffect(() => {
-    fetch ("http://localhost:9292/players")
+    fetch ("https://the-greatest-battle.herokuapp.com/players")
    .then(r=>r.json())
    .then (data=> setallPlayers(data))
    
    }, [selected1,domUpdate])
    useEffect(() => {
-    fetch ("http://localhost:9292/game_instances")
+    fetch ("https://the-greatest-battle.herokuapp.com/game_instances")
    .then(r=>r.json())
    .then (data=> setFetchedGames(data))
    
@@ -67,7 +67,7 @@ function resetPlayers(){
 
 useEffect(() => {
   if (selected1 === true && selected2 === true ){
- fetch(`http://localhost:9292/game_instances`, {
+ fetch(`https://the-greatest-battle.herokuapp.com/game_instances`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
